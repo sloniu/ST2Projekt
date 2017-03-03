@@ -8,6 +8,12 @@ namespace WowTeamCreator.Controllers
 {
     public class DungeonsController : Controller
     {
+        // GET: Index
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         // GET: Dungeons
         public ActionResult WellOfEternity()
         {
