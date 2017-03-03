@@ -153,14 +153,16 @@ namespace WowTeamCreator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Manage(IEnumerable<Player> model)
         {
-            foreach (var player in model)
-            {
-                if (player.Selected)
-                {
-                    Debug.WriteLine(player.Name);
-                }
-            }
-            return RedirectToAction("Index");
+            var result = TeamCreator.Create(model.ToList());
+            TempData["result"] = result.Team;
+            return RedirectToAction("Team");
+        }
+
+        public ActionResult Team()
+        {
+            //ViewBag.MissingRoles = result.MissingRoles;
+            var s = (IEnumerable<Player>) TempData["result"];
+            return View(TempData["result"]);
         }
 
 
