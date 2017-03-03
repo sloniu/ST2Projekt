@@ -11,14 +11,35 @@ using WowTeamCreator.Models;
 
 namespace WowTeamCreator.Controllers
 {
+    [Authorize]
     public class PlayersController : Controller
     {
-        private WowContext db = new WowContext();
+        private readonly WowContext _db = new WowContext();
+
+        private readonly List<SelectListItem> _listItems = new List<SelectListItem>()
+        {
+            new SelectListItem
+            {
+                Text = "Damage",
+                Value = "DPS",
+                Selected = true
+            },
+            new SelectListItem
+            {
+                Text = "Healer",
+                Value = "Healer"
+            },
+            new SelectListItem
+            {
+                Text = "Tank",
+                Value = "Tank"
+            }
+        };
 
         // GET: Players
         public ActionResult Index()
         {
-            return View(db.Players.ToList());
+            return View(_db.Players.ToList());
         }
 
         // GET: Players/Details/5
@@ -28,7 +49,7 @@ namespace WowTeamCreator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Player player = db.Players.Find(id);
+            Player player = _db.Players.Find(id);
             if (player == null)
             {
                 return HttpNotFound();
@@ -39,6 +60,7 @@ namespace WowTeamCreator.Controllers
         // GET: Players/Create
         public ActionResult Create()
         {
+            ViewBag.Roles = _listItems;
             return View();
         }
 
@@ -51,8 +73,8 @@ namespace WowTeamCreator.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Players.Add(player);
-                db.SaveChanges();
+                _db.Players.Add(player);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -62,11 +84,12 @@ namespace WowTeamCreator.Controllers
         // GET: Players/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.Roles = _listItems;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Player player = db.Players.Find(id);
+            Player player = _db.Players.Find(id);
             if (player == null)
             {
                 return HttpNotFound();
@@ -83,8 +106,8 @@ namespace WowTeamCreator.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(player).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(player).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(player);
@@ -97,7 +120,7 @@ namespace WowTeamCreator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Player player = db.Players.Find(id);
+            Player player = _db.Players.Find(id);
             if (player == null)
             {
                 return HttpNotFound();
@@ -110,9 +133,9 @@ namespace WowTeamCreator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Player player = db.Players.Find(id);
-            db.Players.Remove(player);
-            db.SaveChanges();
+            Player player = _db.Players.Find(id);
+            _db.Players.Remove(player);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +143,7 @@ namespace WowTeamCreator.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
