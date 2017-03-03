@@ -6,7 +6,7 @@ namespace WowTeamCreator.DAL
 {
     public class WowContext : DbContext
     {
-        public WowContext() : base("SchoolContext")
+        public WowContext() : base("WowContext")
         {
         }
 
