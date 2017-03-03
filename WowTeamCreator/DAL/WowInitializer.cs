@@ -13,7 +13,7 @@ namespace WowTeamCreator.DAL
         {
             var players = new List<Player>
             {
-                new Player { Level = 5, Name = "Anton", Role = "Healer" },
+                new Player { level = 5, name = "Anton", role = "Healer" },
             };
 
             players.ForEach(s => context.Players.Add(s));

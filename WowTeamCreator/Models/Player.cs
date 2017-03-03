@@ -7,9 +7,9 @@ namespace WowTeamCreator.Models
 {
     public class Player
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Role { get; set; }
-        public int Level { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string role { get; set; }
+        public int level { get; set; }
     }
 }
