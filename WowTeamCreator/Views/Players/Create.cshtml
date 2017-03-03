@@ -3,7 +3,28 @@
 @{
     ViewBag.Title = "Create";
 }
-@ViewBag.RoleList
+
+@{
+    List<SelectListItem> _listItems = new List<SelectListItem>()
+        {
+            new SelectListItem
+            {
+                Text = "Damage",
+                Value = "DPS",
+                Selected = true
+            },
+            new SelectListItem
+            {
+                Text = "Healer",
+                Value = "Healer"
+            },
+            new SelectListItem
+            {
+                Text = "Tank",
+                Value = "Tank"
+            }
+        };
+}
 <h2>Create</h2>
 
 
@@ -26,7 +47,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Role, (IEnumerable<SelectListItem>)ViewBag.RoleList, "-- Select role --", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Role, (IEnumerable<SelectListItem>)ViewBag.Roles, "-- Select role --", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
             </div>
         </div>

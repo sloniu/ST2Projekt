@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Edit";
 }
-@ViewBag.RoleList
 <h2>Edit</h2>
 
 
@@ -28,7 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Role, (IEnumerable<SelectListItem>)ViewBag.RoleList, "-- Select role --", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Role, (IEnumerable<SelectListItem>)ViewBag.Roles, "-- Select role --", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
             </div>
         </div>

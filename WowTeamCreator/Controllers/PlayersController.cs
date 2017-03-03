@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -16,7 +17,7 @@ namespace WowTeamCreator.Controllers
     {
         private readonly WowContext _db = new WowContext();
 
-        private readonly List<SelectListItem> _listItems = new List<SelectListItem>()
+        private List<SelectListItem> _listItems = new List<SelectListItem>()
         {
             new SelectListItem
             {
