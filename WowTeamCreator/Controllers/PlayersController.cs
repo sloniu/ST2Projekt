@@ -130,15 +130,39 @@ namespace WowTeamCreator.Controllers
         }
 
         // POST: Players/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+//        [HttpPost, ActionName("Delete")]
+//        [ValidateAntiForgeryToken]
+//        public ActionResult DeleteConfirmed(int id)
+//        {
+//            Player player = _db.Players.Find(id);
+//            _db.Players.Remove(player);
+//            _db.SaveChanges();
+//            return RedirectToAction("Index");
+//        }
+
+
+        // GET: Manage
+        public ActionResult Manage()
         {
-            Player player = _db.Players.Find(id);
-            _db.Players.Remove(player);
-            _db.SaveChanges();
+            return View(_db.Players.ToList());
+        }
+
+
+        // POST: Manage
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Manage(IEnumerable<Player> model)
+        {
+            foreach (var player in model)
+            {
+                if (player.Selected)
+                {
+                    Debug.WriteLine(player.Name);
+                }
+            }
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {

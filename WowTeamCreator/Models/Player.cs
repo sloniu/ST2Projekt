@@ -11,5 +11,6 @@ namespace WowTeamCreator.Models
         public string Name { get; set; }
         public string Role { get; set; }
         public int Level { get; set; }
+        public bool Selected { get; set; }
     }
 }
