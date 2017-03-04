@@ -2,27 +2,31 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
+<div style="text-align: center; background: rgba(255, 255, 255, .7); padding:20px;">
     <h1>World of Warcraft Team Creator</h1>
     <p class="lead">This website will help you assembling a team for your dungeons!</p>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 col-centered">
         <h2>Login</h2>
         <p>
             To use all the features of this website, please register and log in.
         </p>
-        <p>@Html.ActionLink("Register", "Register", "Account", new object {}, new { @class = "btn btn-default" })</p>
+        <p>@Html.ActionLink("Register", "Register", "Account", new object { }, new { @class = "btn btn-primary btn-block" })</p>
     </div>
-    <div class="col-md-4">
+</div>
+<div class="row">
+    <div class="col-md-4 col-centered">
         <h2>Manage your players</h2>
         <p>You can add your guild members which you will use later to assemble the team from.</p>
-        <p>@Html.ActionLink("Players", "Index", "Players", new object { }, new { @class = "btn btn-default" })</p>
+        <p>@Html.ActionLink("Players", "Index", "Players", new object { }, new { @class = "btn btn-primary btn-block" })</p>
     </div>
-    <div class="col-md-4">
+</div>
+<div class="row">
+    <div class="col-md-4 col-centered">
         <h2>Dungeons</h2>
         <p>You can browse avaiable dungeons and raids as well learn new tactics, which will help you with getting that sweet sweet loot!</p>
-        <p>@Html.ActionLink("Dungeons", "Index", "Dungeons", new object { }, new { @class = "btn btn-default" })</p>
+        <p>@Html.ActionLink("Dungeons", "Index", "Dungeons", new object { }, new { @class = "btn btn-primary btn-block" })</p>
     </div>
 </div>
