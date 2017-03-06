@@ -154,15 +154,18 @@ namespace WowTeamCreator.Controllers
         public ActionResult Manage(IEnumerable<Player> model)
         {
             var result = TeamCreator.Create(model.ToList());
-            TempData["result"] = result.Team;
+            TempData["result"] = result;
             return RedirectToAction("Team");
         }
 
         public ActionResult Team()
         {
-            //ViewBag.MissingRoles = result.MissingRoles;
-            var s = (IEnumerable<Player>) TempData["result"];
-            return View(TempData["result"]);
+            var s = (TeamCreatorResult)TempData["result"];
+            if (s.MissingRoles != null)
+            {
+                ViewBag.MissingRoles = s.MissingRoles;
+            }
+            return View((IEnumerable<Player>)s.Team);
         }
 
 
